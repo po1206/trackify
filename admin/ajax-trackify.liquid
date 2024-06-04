@@ -1,0 +1,80 @@
+
+{% if template contains 'product' %}
+{% for tag in product.tags %}
+{% if tag contains 'rr_track' %}        
+            
+<script src='https://app.redretarget.com/sapp/query.php?tags[]={{ tag }}&shop={{ shop.permanent_domain | remove: 'http://' }}&code=product'></script>
+
+{% endif %} 
+{% endfor %}
+
+{% for tag in product.tags %}
+{% if tag contains 'rr_track' %}  
+<script>            
+$('fuck').click(function(e) {  
+var source = 'https://app.redretarget.com/sapp/query.php?tags[]={{ tag }}&shop={{ shop.permanent_domain | remove: 'http://' }}&code=';
+ var script = document.createElement('script');
+ script.setAttribute('type', 'text/javascript');
+ script.setAttribute('src', source);
+document.body.appendChild(script);    
+});  
+</script>
+{% endif %} 
+{% endfor %}
+{% endif %}
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1604876259777969');
+fbq('track', 'PageView');
+</script>
+
+<script>(function() {
+var _fbq = window._fbq || (window._fbq = []);
+if (!_fbq.loaded) {
+var fbds = document.createElement('script');
+fbds.async = true;
+fbds.src = '//connect.facebook.net/en_US/fbds.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(fbds, s);
+_fbq.loaded = true;
+}
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '000', {'value':'0.00','currency':'{{ shop.currency }}'}]);
+</script>
+
+{% if template contains 'product'  %}
+<script>
+fbq('track', 'ViewContent', {
+content_ids: ['{{ product.id }}'],
+content_type: 'product_group',
+product_catalog_id: '000', 
+value: {{ product.price | money_without_currency }},
+currency: '{{ shop.currency }}'
+});
+</script>
+{% endif %}
+
+<script>     
+$('fuck').click(function(e) {  
+$(document).ajaxStop(function () {
+var source = 'https://app.redretarget.com/sapp/ca.php?ct={{ product.price | money_without_currency }}&sc={{ shop.currency }}&pid={{product.id}}&pvtc=000';
+ var script = document.createElement('script');
+ script.setAttribute('type', 'text/javascript');
+ script.setAttribute('src', source);
+document.body.appendChild(script); 
+}); 
+});  
+</script>
+
+ 
+<script>            
+$('fuck').click(function(e) {  
+window._fbq.push(['track', '00', {'value':'{{ cart.total_price | money_without_currency}}','currency':'{{ shop.currency }}'}]);
+});  
+</script>

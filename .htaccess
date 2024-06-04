@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /redtargeting/sapp/index.php/$1 [L]
+
+<IfModule mod_env.c>
+    SetEnv CI_ENV development
+</IfModule>

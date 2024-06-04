@@ -1,0 +1,23 @@
+{% if template contains "product" %}
+{% for tag in product.tags %}
+{% if tag contains "rr_track" %}        
+            
+<script src="https://app.redretarget.com/sapp/query.php?tags[]={{ tag }}&shop={{ shop.permanent_domain | remove: "http://" }}&code=product"></script>
+
+{% endif %} 
+{% endfor %}
+
+{% else %}
+
+{% for item in cart.items %}
+{% for tag in item.product.tags %}    
+            
+{% if tag contains "rr_track" %}        
+            
+<script src="https://app.redretarget.com/sapp/query.php?tags[]={{ tag }}&shop={{ shop.permanent_domain | remove: "http://" }}&code="></script>
+
+{% endif %}   
+    
+{% endfor %}
+{% endfor %}
+{% endif %}
